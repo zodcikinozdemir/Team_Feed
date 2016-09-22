@@ -1,3 +1,4 @@
+  // https://console.firebase.google.com/project/team-feed/
   var config = {
     apiKey: "AIzaSyBEb-mCpF6idbFnd99pdMci9P97LsECPlc",
     authDomain: "team-feed.firebaseapp.com",
@@ -6,4 +7,3 @@
     messagingSenderId: "901779519021"
   };
   firebase.initializeApp(config);
-  
