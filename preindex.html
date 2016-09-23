@@ -5,23 +5,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Landing Page</title>
+    <title>Team Feed Landing Page</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/prestyle.css">
+    <link rel="stylesheet" href="assets/css/prestyle.css" type="text/css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 </head>
 
 <body>
-    <div class="jumbotron">
-        <div class="container" align="center">
+
+    <div class = "row" align="center" id = "gifrow">
+        <div class="col-lg-3" id ="bball">BASKETBALL</div>
+        <div class="col-lg-3" id ="soccer">SOCCER</div>
+        <div class="col-lg-3" id ="baseball">BASEBALL</div>
+        <div class="col-lg-3" id ="football">FOOTBALL</div>
+
+    </div>
+
+    <div class="jumbotron" align="center">
+
             <h1 class="display-3">Welcome to TEAM FEED</h1>
             <p class="lead">Search for ALL THINGS your favorite team in a click!</p>
             <hr class="m-y-md">
             <p>News. Social. Roster. Events.</p>
-            <p class="lead">
+            <!-- <p class="lead">
                 <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p>
-        </div>
+            </p> -->
     </div>
+
+
     <div class="container">
         <div class="row">
         	<div class = "container">
@@ -33,46 +45,53 @@
                     </div>
                     <div class="panel-body">
                         <!-- New Member Sign-up Form -->
-                        <form role="form">
+                        <form class="form-inline">
+                              
+                              <div class="form-group">
+                                <label for="emailInput">Email</label>
+                                <input type="email" class="form-control" id="exampleInput" placeholder="john.doe@example.com">
+                              </div>
                             <div class="form-group">
-                                <label for="text">Name:</label>
-                                <input type="text" class="form-control" id="nameinput">
-                            </div>
-                            <div class="form-group">
-                                <label for="text">Email:</label>
-                                <input type="email" class="form-control" id="emailinput">
-                            </div>
-                            <div class="form-group">
-                                <label for="text">Favorite Team:</label>
-                                <input type="team" class="form-control" id="favteaminput">
-                            </div>
-                            <button type="signup" class="btn btn-default" id="addUser">Sign Up</button>
+                                <label for="passwordInput">Password</label>
+                                <input type="text" class="form-control" id="passwordInput" placeholder="John Doe">
+                              </div>
+                              <div class="form-group">
+                                <label for="favTeamInput">Favorite Team</label>
+                                <input type="email" class="form-control" id="favTeamInput" placeholder="New York Giants">
+                              </div>
+                              <button type="submit" class="btn btn-default">Sign-Up</button>
                         </form>
                     </div>
                 </div>
             </div>
-        
-
-                <div class = "container">
-                	<div class="col-lg-6">
-                		<div class="panel panel-default">
-                   			 <div class="panel-heading">
-                       		 <h3 class="panel-title">Login</h3>
-                    		</div>
-                    		<div class="panel-body">
-                        <!-- Login Form -->
-                        <form role="form">
-                            
-                            <div class="form-group">
-                                <label for="text">Email:</label>
-                                <input type="email" class="form-control" id="emailinput">
-                            </div>
-                            
-                            <button type="login" class="btn btn-default" id="signInUser">Log In</button>
-                        </form>
-                    </div>
-                		</div>
-                		</div>
+ 
+<!--             Member Login
+ -->        <div class="col-lg-6">
+        		<div class="panel panel-default">
+           			 <div class="panel-heading">
+               		 <h3 class="panel-title">Login</h3>
+            		</div>
+            		<div class="panel-body">
+                <!-- Login Form -->
+                <form class="form-inline">
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Remember me
+                    </label>
+                  </div>
+                  <button type="submit" class="btn btn-default">Sign in</button>
+                </form>
+            </div>
+        		</div>
+        		</div>
                 	
 
                 </div>
@@ -80,67 +99,12 @@
             </div>
         </div>
        </div>
+       </div>
+       <
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- Bootstrap JavaScript-->
         <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js">
         </script>
-        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-
-    <script>
-    // https://console.firebase.google.com/project/team-feed/
-    var config = {
-        apiKey: "AIzaSyBEb-mCpF6idbFnd99pdMci9P97LsECPlc",
-        authDomain: "team-feed.firebaseapp.com",
-        databaseURL: "https://team-feed.firebaseio.com",
-        storageBucket: "team-feed.appspot.com",
-        messagingSenderId: "901779519021"
-    };
-    firebase.initializeApp(config);
-
-    var provider = new firebase.auth.GoogleAuthProvider();
-
-    $('#addUser').on('click', function() {
-        firebase.auth().signInWithRedirect(provider);
-
-        firebase.auth().getRedirectResult().then(function(result) {
-        if (result.credential) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // ...
-        }
-        // The signed-in user info.
-        var user = result.user;
-        }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-        });
-    });
-
-        var email = $("#emailinput").val().trim()
-        var password = $('#').val().trim()
-
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        });
-
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        });
-
-    </script>
-
 </body>
 
 </html>

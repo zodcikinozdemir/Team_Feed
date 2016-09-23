@@ -1,0 +1,53 @@
+
+#gifrow {
+	font-family: oswald;
+}
+.jumbotron {
+	background-color: black;
+	height: 280px;
+	color: #fefdfb;
+	font-family: Oswald;
+}
+
+
+#bball{
+background-image: url("../images/preindex/basketball.gif");
+height:200px;
+color: red;
+font-size: 48px;
+font-family: Oswald;
+padding-top: 50px;
+
+
+}
+
+#football {
+background-image: url("../images/preindex/football.gif");
+height:200px;
+color: #ffffff;
+font-size: 48px;
+font-family: Oswald;
+padding-top: 50px;
+
+}
+
+
+#soccer{
+background-image: url("../images/preindex/soccer.gif");
+height:200px;
+color: blue;
+font-size: 48px;
+font-family: Oswald;
+padding-top: 50px;
+
+}
+
+#baseball{
+background-image: url("../images/preindex/baseball.gif");
+height:200px;
+color: orange;
+font-size: 48px;
+font-family: Oswald;
+padding-top: 50px;
+
+}
