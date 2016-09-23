@@ -9,82 +9,91 @@
   <!-- Firebase Reference -->
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   
+  <!--google fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 </head>
 
 <body>
-
-
 <style type="text/css">
      body { background: #000000 !important;} 
-  </style>
+</style>
 
 <!--NAV/ SEARCH BAR -->
 <nav class="navbar navbar-inverse">
  <div class="container-fluid">
   <div class="row">
-   <div class="col-sm-3">.</div>
+   <div class="col-md-3">.</div>   
       <form class="navbar-form navbar-center" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Select another team"></div>
            <button type="submit" class="btn btn-default">Submit</button>
             <a href="#" class="btn btn-danger" id="resetButton">RESET</a>
-  <div class="col-sm-2">
-</div>
-</div>
+   <div class="col-md-2">
+  </div>
+ </div>
 </nav>
 
-<!--DYNAMIC BUTTON AREA-->
-  <div class="row">
-  <div class="col-sm-2 col-md"></div>
-  <div class="col-sm-8 col-md" id="dynamicButtons"></div>
-  <div class="col-sm-2 col-md"></div>
-</div>
-  
-  
 <br>
 <br>
-
-
-<!--news-->
+<!--BUTTON AREA-->
 <div class="row">
-  <div class="col-sm-1"></div>
-  <div class="col-sm-4">
-  <p><font color="#D5D8DC"><central>NEWS</central></font></p>
-      <div class="well well-lg"> Look, I'm in a large well!</div>
-</div>
-
-<!--events-->
-<div class="col-sm-5">
-  <p><font color="#D5D8DC"><central>EVENTS</central></font></p>
-      <div class="well well-lg"> Look, I'm in a large well!</div>
-      <div class="col-sm-1"></div>
-</div>
+  <div class="col-md-4"></div>
+  <div class="col-md-2col-md">
+     <a href="#" class="btn btn-primary btn-xs" id="footBall">FOOTBALL</a>
+     <a href="#" class="btn btn-primary btn-xs" id="baseBall">BASE BALL</a>
+     <a href="#" class="btn btn-primary btn-xs" id="basketBall">BASKET BALL</a>
+     <a href="#" class="btn btn-primary btn-xs" id="hockey">HOCKEY</a>
+     <a href="#" class="btn btn-primary btn-xs" id="soccer">SOCCER</a>
+     <a href="#" class="btn btn-primary btn-xs" id="otherSport">OTHER</a>
+  </div>
+  <div class="col-md-1" ></div>
 </div>
 
 <br><br>
 
-<!--roster-->
+<div class="row"><!--dynamic buttons for added teams & teams associated with sports button-->
+  <div class="col-md-1"></div>
+  <div class="col-md" id="dynamicButtons"></div>
+  <div class="col-md-1"></div>
+</div>
+  
+<br><br>
+
+<!--news well-->
 <div class="row">
-  <div class="col-sm-1"></div>
-  <div class="col-sm-5">
-  <p><font color="#D5D8DC"><central>ROSTER</central></font></p>
-      <div class="well well-lg"> Look, I'm in a large well!</div>
+ <div class="col-md-1"></div>
+ <div class="col-md-5">
+  <h3><p><font color="#D5D8DC"><center><em>NEWS</em></center></font></p></h3>
+      <div class="well well-lg"> </div>
 </div>
 
-<!--social media links-->
-
-
-  <div class="col-sm-5">
-  <p><font color="#D5D8DC"><central>SOCIAL MEDIA LINKS</central></font></p>
-      <div class="well well-lg"> Look, I'm in a large well!</div>
-      <div class="col-sm-1"></div>
+<!--events well-->
+<div class="col-md-5">
+ <h3><p><font color="#D5D8DC"><center><em>EVENTS</em></center></font></p></h3>
+      <div class="well well-lg"> </div>
+      <div class="col-md-1"></div>
+</div>
 </div>
 
+<br>
+<br>
 
+<!--roster well-->
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+  <h3><p><font color="#D5D8DC"><center><em>ROSTER</em></center></font></p></h3>
+      <div class="well well-lg"></div>
+</div>
 
-
-
+<!--social media links well-->
+  <div class="col-md-5">
+ <h3><p><font color="#D5D8DC"><center><em>SOCIAL MEDIA LINKS</em></center></font></p></h3>
+      <div class="well well-lg"></div>
+      <div class="col-md-1"></div>
+</div>
       
+<!--JQUERY/ JS LINK-->
 <script src="https://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="assets/javascript/team_feed.js"></script>
 
