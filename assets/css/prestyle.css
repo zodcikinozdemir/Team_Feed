@@ -2,9 +2,14 @@
 #gifrow {
 	font-family: oswald;
 }
+
+#gifrow2{
+	margin-top: -35px;
+}
+
 .jumbotron {
-	background-color: #323232;
-	height: 290px;
+	background-color: #171d22;
+	height: 300px;
 	color: #ffffff;
 	font-family: 'Open Sans';
   font-style: normal;
@@ -15,7 +20,7 @@
 #bball{
 background-image: url("../images/preindex/basketball.gif");
 height:175px;
-color: #323232;
+color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
 padding-top: 100px;
@@ -60,9 +65,9 @@ padding-top: 100px;
 background-image: url("../images/preindex/track.gif");
 height:175px;
 color: #ffffff;
-font-size: 60px;
+font-size: 48px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 80px;
 }
 
 #hockey{
@@ -88,4 +93,11 @@ color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
 padding-top: 100px;
+}
+
+footer {
+	background-color: #171d22;
+	text-align: center;
+	color: #ffffff;
+	font-family: 'Open Sans';
 }
