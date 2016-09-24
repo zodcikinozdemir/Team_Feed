@@ -7,6 +7,7 @@
 	margin-top: -35px;
 }
 
+
 .jumbotron {
 	background-color: #171d22;
 	height: 300px;
@@ -17,13 +18,15 @@
 }
 
 
+/*FIRST ROW OF GIFS*/
+
 #bball{
 background-image: url("../images/preindex/basketball.gif");
 height:175px;
 color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 60px;
 
 
 }
@@ -34,7 +37,7 @@ height:175px;
 color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 60px;
 
 }
 
@@ -46,7 +49,7 @@ height:175px;
 color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 60px;
 
 
 }
@@ -57,17 +60,19 @@ height:175px;
 color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 60px;
 
 }
 
+/*2nd ROW OF GIFS*/
 #track{
 background-image: url("../images/preindex/track.gif");
 height:175px;
 color: #ffffff;
 font-size: 48px;
 font-family: Oswald;
-padding-top: 80px;
+padding-top: 60px;
+
 }
 
 #hockey{
@@ -76,7 +81,7 @@ height:175px;
 color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 60px;
 }
 #rugby{
 background-image: url("../images/preindex/rugby.gif");
@@ -84,7 +89,7 @@ height:175px;
 color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 60px;
 }
 #volleyball{
 background-image: url("../images/preindex/volleyball.gif");
@@ -92,10 +97,11 @@ height:175px;
 color: #ffffff;
 font-size: 60px;
 font-family: Oswald;
-padding-top: 100px;
+padding-top: 60px;
 }
 
-footer {
+/*Footer
+*/footer {
 	background-color: #171d22;
 	text-align: center;
 	color: #ffffff;
