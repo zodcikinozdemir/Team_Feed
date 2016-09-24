@@ -87,59 +87,97 @@
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
     <script>
-    // https://console.firebase.google.com/project/team-feed/
-    var config = {
-        apiKey: "AIzaSyBEb-mCpF6idbFnd99pdMci9P97LsECPlc",
-        authDomain: "team-feed.firebaseapp.com",
-        databaseURL: "https://team-feed.firebaseio.com",
-        storageBucket: "team-feed.appspot.com",
-        messagingSenderId: "901779519021"
-    };
-    firebase.initializeApp(config);
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCB1_l9Z63nc9iMewL2UOrhTzzAR2ResEE",
+          authDomain: "team-feed-2.firebaseapp.com",
+          databaseURL: "https://team-feed-2.firebaseio.com",
+          storageBucket: "team-feed-2.appspot.com",
+          messagingSenderId: "250926730497"
+        };
+        firebase.initializeApp(config);
 
-    var provider = new firebase.auth.GoogleAuthProvider();
+        var database = firebase.database();
 
-    $('#addUser').on('click', function() {
-        firebase.auth().signInWithRedirect(provider);
+        // Sign up logic
+        $('#signUp').on('click', function() {
+          var email = $('#emailInput').val().trim(); 
+          var password = $('#passwordInput').val().trim();
+          var favTeam = $('#favTeamInput').val().trim();
 
-        firebase.auth().getRedirectResult().then(function(result) {
-        if (result.credential) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // ...
-        }
-        // The signed-in user info.
-        var user = result.user;
-        }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
+          if (email.length < 4) {
+            $('#signupSection').append('<div>' + 'Please enter an email address' + '</div>');
+            return false;
+          }
+          if (password.length < 4) {
+            $('#signupSection').append('<div>' + 'Please enter a password' + '</div>');
+            return false;
+          }
+
+          firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode == 'auth/weak-password') {
+            $('#signupSection').append('<div>' + 'Password is too weak' + '</div>');
+          } else {
+            $('#signupSection').append('<div>' + errorMessage + '</div>');
+          }
+          // ...
+          });
+
+          database.ref().push({
+            Email: email,
+            FavTeam: favTeam
+          });
+
+          $('#emailInput').val("");
+          $('#passwordInput').val("");
+          $('#favTeamInput').val("");
+
+          return false;
         });
-    });
+        // <----------------------------------------->
 
-        var email = $("#emailinput").val().trim()
-        var password = $('#').val().trim()
+        // Sign in logic
+        $('#signIn').on('click', function() {
 
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        });
+          if (firebase.auth().currentUser) {
+          // [START signout]
+          firebase.auth().signOut();
+          // [END signout]
+          } else {
+          var email = $('#exampleInputEmail3').val().trim(); 
+          var password = $('#exampleInputPassword3').val().trim();
+          if (email.length < 4) {
+            $('#loginSection').append('<div>' + 'Please enter an email address' + '</div>');
+            return false;
+          }
+          }
+          if (password.length < 4) {
+            $('#loginSection').append('<div>' + 'Password too short' + '</div>');
+            return false;
+          }
+          firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            $('#loginSection').append('<div>' + 'Wrong password' + '</div>');
+          } else {
+            $('#loginSection').append('<div>' + errorMessage + '</div');
+          }
+          // ...
+          });
 
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        });
+          $('#exampleInputEmail3').val("");
+          $('#exampleInputPassword3').val("");
 
-    </script>
+          return false;
+          });  
+
+          // <----------------------------------------->
+        </script>
 
 </body>
 
