@@ -5,79 +5,100 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Landing Page</title>
+    <title>Team Feed Landing Page</title>
+    <!--     Bootstrap
+ -->
     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/prestyle.css">
+    <!--  Stylesheet
+ -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/prestyle.css">
+    <!--  Google Font
+ -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href ="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400" rel="stylesheet">
+    <!-- Firebase
+ -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 </head>
 
 <body>
-    <div class="jumbotron">
-        <div class="container" align="center">
-            <h1 class="display-3">Welcome to TEAM FEED</h1>
-            <p class="lead">Search for ALL THINGS your favorite team in a click!</p>
-            <hr class="m-y-md">
-            <p>News. Social. Roster. Events.</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p>
-        </div>
+<!-- first row of gifs
+ -->    <div class="row" align="center" id="gifrow">
+        <div class="col-lg-3" id="bball">BASKETBALL</div>
+        <div class="col-lg-3" id="soccer">SOCCER</div>
+        <div class="col-lg-3" id="baseball">BASEBALL</div>
+        <div class="col-lg-3" id="football" data-name="football">FOOTBALL</div>
     </div>
-    <div class="container">
-        <div class="row">
-        	<div class = "container">
-            <!-- Sign-Up Panel-->
-            <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">New Member Sign-Up</h3>
-                    </div>
-                    <div class="panel-body">
-                        <!-- New Member Sign-up Form -->
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="text">Name:</label>
-                                <input type="text" class="form-control" id="nameinput">
-                            </div>
-                            <div class="form-group">
-                                <label for="text">Email:</label>
-                                <input type="email" class="form-control" id="emailinput">
-                            </div>
-                            <div class="form-group">
-                                <label for="text">Favorite Team:</label>
-                                <input type="team" class="form-control" id="favteaminput">
-                            </div>
-                            <button type="signup" class="btn btn-default" id="addUser">Sign Up</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+<!--     jumbotron
+ -->    <div class="jumbotron" align="center">
+        <h2 class="display-3">Welcome to TEAM FEED</h2>
+        <p class="lead">Search for ALL THINGS your favorite team in a click!</p>
+        <hr class="m-y-md">
         
+   <!--  <div class="container">
+        <div class="row">
+            <div class="container"> -->
+                <!-- Sign-Up Panel-->
+                <div class="col-lg-7">
+                    <div class="panel panel-default" id="signupSection">
+                        <!-- <div class="panel-heading">
+                            <h3 class="panel-title">New Member Sign-Up</h3>
+                        </div> -->
+                        <div class="panel-body">
+                            <!-- New Member Sign-up Form -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                     <input type="text" class="form-control" id="passwordInput" placeholder="John Doe">
+                                </div>
 
-                <div class = "container">
-                	<div class="col-lg-6">
-                		<div class="panel panel-default">
-                   			 <div class="panel-heading">
-                       		 <h3 class="panel-title">Login</h3>
-                    		</div>
-                    		<div class="panel-body">
-                        <!-- Login Form -->
-                        <form role="form">
-                            
-                            <div class="form-group">
-                                <label for="text">Email:</label>
-                                <input type="email" class="form-control" id="emailinput">
-                            </div>
-                            
-                            <button type="login" class="btn btn-default" id="signInUser">Log In</button>
-                        </form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="emailInput" placeholder="john.doe@example.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                   <input type="team" class="form-control" id="favTeamInput" placeholder="Favorite Team">
+                                </div>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Sign-Up</button>
+                            </form>
+                        </div>
                     </div>
-                		</div>
-                		</div>
-                	
-
                 </div>
-</div>
+                <!--             Member Login
+ -->
+                <div class="col-lg-5">
+                    <div class="panel panel-default" id="loginSection">
+                        <!-- <div class="panel-heading">
+                            <h3 class="panel-title">Login</h3>
+                        </div> -->
+                        <div class="panel-body">
+                            <!-- Login Form -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                                </div>
+                                <div class="checkbox">
+                                    <br>
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                    <button type="submit" class="btn btn-warning">Log In</button>
+
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
+<<<<<<< HEAD
         </div>
        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -178,7 +199,21 @@
 
           // <----------------------------------------->
         </script>
+=======
+            <!-- first row of gifs
+ -->    <div class="row" align="center" id="gifrow2">
+        <div class="col-lg-3" id="hockey">HOCKEY</div>
+        <div class="col-lg-3" id="rugby">RUGBY</div>
+        <div class="col-lg-3" id="volleyball">VOLLEYBALL</div>
+        <div class="col-lg-3" id="track">TRACK and FIELD</div>
+    </div>
+      
+ 
+>>>>>>> c5f11442f78f3c5244c647f7d3bf8f2a38ceda9b
 
 </body>
+<footer>
+   2016 TEAM-EXTREME All rights reserved.
+</footer>
 
 </html>
