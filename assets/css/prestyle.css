@@ -1,0 +1,125 @@
+
+#gifrow {
+	font-family: oswald;
+}
+
+#gifrow2{
+	margin-top: -35px;
+}
+
+
+.jumbotron {
+	background-color: #171d22;
+	height: 300px;
+	color: #ffffff;
+	font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+}
+
+
+/*FIRST ROW OF GIFS*/
+
+#bball{
+background-image: url("../images/preindex/basketball.gif");
+height:175px;
+color: #ffffff;
+font-size: 60px;
+font-family: Oswald;
+padding-top: 60px;
+
+
+}
+
+#football {
+background-image: url("../images/preindex/football.gif");
+height:175px;
+color: #ffffff;
+font-size: 60px;
+font-family: Oswald;
+padding-top: 60px;
+
+}
+
+
+#soccer{
+background-image: url("../images/preindex/soccer.gif");
+height:175px;
+
+color: #ffffff;
+font-size: 60px;
+font-family: Oswald;
+padding-top: 60px;
+
+
+}
+
+#baseball{
+background-image: url("../images/preindex/baseball.gif");
+height:175px;
+color: #ffffff;
+font-size: 60px;
+font-family: Oswald;
+padding-top: 60px;
+
+}
+
+/*2nd ROW OF GIFS*/
+#track{
+background-image: url("../images/preindex/track.gif");
+height:175px;
+color: #ffffff;
+font-size: 48px;
+font-family: Oswald;
+padding-top: 60px;
+
+}
+
+#hockey{
+background-image: url("../images/preindex/hockey.gif");
+height:175px;
+color: #ffffff;
+font-size: 60px;
+font-family: Oswald;
+padding-top: 60px;
+}
+#rugby{
+background-image: url("../images/preindex/rugby.gif");
+height:175px;
+color: #ffffff;
+font-size: 60px;
+font-family: Oswald;
+padding-top: 60px;
+}
+#volleyball{
+background-image: url("../images/preindex/volleyball.gif");
+height:175px;
+color: #ffffff;
+font-size: 60px;
+font-family: Oswald;
+padding-top: 60px;
+}
+
+/*Footer
+*/footer {
+	background-color: #171d22;
+	text-align: center;
+	color: #ffffff;
+	font-family: 'Open Sans';
+}
+
+span {
+	color: black !important;
+}
+
+#remMe {
+	color: white !important;
+}
+
+#signupSection {
+	background-color: black !important;
+}
+
+#loginSection {
+	background-color: black !important;
+}

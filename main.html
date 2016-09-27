@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Feed</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  
+  <!--google fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+   <link href ="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400" rel="stylesheet">
+</head>
+
+<body background="assets/images/seats.jpg">
+
+<!--NAV/ SEARCH BAR -->
+<nav class="navbar navbar-dark" style="background-color: #171d22">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-3">.</div>   
+      <form class="navbar-form navbar-center" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Select another team"></div>
+           <button type="submit" class="btn btn-default" id="submitBtn" style="font-family: open sans, font-size:15pt; font-style:italic">SUBMIT</button>
+            <a href="#" class="btn btn-danger" id="resetBtn" style="font-family: open sans, font-size:15pt; font-style:italic"> RESET</a>
+   <div class="col-md-2">
+  </div>
+ </div>
+</nav>
+
+<br>
+<br>
+<!--BUTTON AREA-->
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-2col-md">
+     <a href="#" class="btn btn-danger btn-sm" id="footBallBtn" >FOOTBALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="baseBallBtn" >BASE BALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="basketBallBtn" >BASKET BALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="hockeyBtn">HOCKEY</a>
+     <a href="#" class="btn btn-danger btn-sm" id="otherSportBtn">OTHER</a>
+  </div>
+  <div class="col-md-1" ></div>
+</div>
+
+<!--samples teams for each sport-->
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-2col-md">
+     <a href="#" class="btn btn-danger btn-sm" id="jetsBtn">NY JETS</a>
+     <a href="#" class="btn btn-danger btn-sm" id="yankeesBtn" >NY YANKEES</a>
+     <a href="#" class="btn btn-danger btn-sm" id="bullsBtn" >BULLS</a>
+     <a href="#" class="btn btn-danger btn-sm" id="rangerBtn">NY RANGERS</a>
+  </div>
+  <div class="col-md-1" ></div>
+</div>
+
+
+
+<br><br>
+
+<div class="row"><!--dynamic buttons for added teams & teams associated with sports button-->
+  <div class="col-md-1"></div>
+  <div class="col-md" id="dynamicButtons"></div>
+  <div class="col-md-1"></div>
+</div>
+  
+<br><br>
+
+<!--news well-->
+<div class="row">
+ <div class="col-md-1"></div>
+ <div class="col-md-5">
+  <font color=" #800000"><center><p style="font-family: oswald, serif; font-size:30pt; font-style:italic">NEWS</center></font></p>
+      <div class="well well-lg" id="newsWell"> </div>
+</div>
+
+<!--events well-->
+<div class="col-md-5">
+ <font color=" #800000"><center><p style="font-family: oswald, serif; font-size:30pt; font-style:italic">EVENT</center></font></p>
+      <div class="well well-lg" id="eventsWells"> </div>
+      <div class="col-md-1"></div>
+</div>
+</div>
+
+<br>
+<br>
+
+<!--roster well-->
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+  <font color="#800000"><center><p style="font-family: oswald, serif; font-size:30pt; font-style:italic">ROSTER</center></font></p>
+      <div class="well well-lg" id="rosterWell"></div>
+</div>
+
+<!--social media links well-->
+  <div class="col-md-5">
+ <font color=" #800000"><center><p style="font-family: oswald, serif; font-size:30pt; font-style:italic">SOCIAL MEDIA</center></font></p>
+      <div class="well well-lg" id="socialMediaWell">Work in progress, coming soon.</div>
+        
+      <div class="col-md-1"></div>
+</div>
+      
+<!--JQUERY/ JS LINK-->
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="assets/javascript/team_feed.js"></script>
+
+
+</body>
+</html>

@@ -1,21 +1,228 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Team Feed</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+<html lang="">
 
-  <!-- Firebase Reference -->
-  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-  
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Team Feed Landing Page</title>
+    <!--     Bootstrap
+ -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--  Stylesheet
+ -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/prestyle.css">
+    <!--  Google Font
+ -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href ="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400" rel="stylesheet">
+    <!-- Firebase
+ -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 </head>
 
 <body>
-      
-<script src="https://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="assets/javascript/team_feed.js"></script>
+<!-- first row of gifs
+ -->    <div class="row" align="center" id="gifrow">
+        <div class="col-lg-3" id="bball">BASKETBALL</div>
+        <div class="col-lg-3" id="soccer">SOCCER</div>
+        <div class="col-lg-3" id="baseball">BASEBALL</div>
+        <div class="col-lg-3" id="football" data-name="football">FOOTBALL</div>
+    </div>
 
+<!--     jumbotron
+ -->    <div class="jumbotron" align="center">
+        <h2 class="display-3">Welcome to TEAM FEED</h2>
+        <p class="lead">Search for ALL THINGS your favorite team in a click!</p>
+        <hr class="m-y-md">
+        
+   <!--  <div class="container">
+        <div class="row">
+            <div class="container"> -->
+                <!-- Sign-Up Panel-->
+                <div class="col-lg-7">
+                    <div class="panel panel-default" id="signupSection">
+                        <!-- <div class="panel-heading">
+                            <h3 class="panel-title">New Member Sign-Up</h3>
+                        </div> -->
+                        <div class="panel-body">
+                            <!-- New Member Sign-up Form -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                     <input type="email" class="form-control" id="emailInput" placeholder="john.doe@example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="passwordInput" placeholder="password">
+                                </div>
+                                
+                                <div class="form-group">
+                                   <input type="text" class="form-control" id="favTeamInput" placeholder="Favorite Team">
+                                </div>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary" id="signUp">Sign-Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--             Member Login
+ -->
+                <div class="col-lg-5">
+                    <div class="panel panel-default" id="loginSection">
+                        <!-- <div class="panel-heading">
+                            <h3 class="panel-title">Login</h3>
+                        </div> -->
+                        <div class="panel-body">
+                            <!-- Login Form -->
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                                </div>
+                                <div class="checkbox">
+                                    <br>
+                                    <label>
+                                        <input type="checkbox"><span id="remMe">Remember me</span></input>
+                                    </label>
+                                    <button type="submit" class="btn btn-warning" id="signIn">Log In</button>
+
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+<!-- <<<<<<< HEAD -->
+        </div>
+       </div>
+       	<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <!-- Bootstrap JavaScript-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+        </script>
+        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCB1_l9Z63nc9iMewL2UOrhTzzAR2ResEE",
+          authDomain: "team-feed-2.firebaseapp.com",
+          databaseURL: "https://team-feed-2.firebaseio.com",
+          storageBucket: "team-feed-2.appspot.com",
+          messagingSenderId: "250926730497"
+        };
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
+
+        // Sign up logic
+        $('#signUp').on('click', function() {
+          	var email = $('#emailInput').val().trim(); 
+          	var password = $('#passwordInput').val().trim();
+          	var favTeam = $('#favTeamInput').val().trim();
+
+          	if (email.length < 4) {
+            	$('#signupSection').append('<div class="errorMessage1">' + 'Please enter an email address' + '</div>');
+            return false;
+          	}
+        	if (password.length < 4) {
+            	$('#signupSection').append('<div class="errorMessage1">' + 'Please enter a password' + '</div>');
+            return false;
+          	}
+
+          	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+          	// Handle Errors here.
+        	var errorCode = error.code;
+          	var errorMessage = error.message;
+        	if (errorCode == 'auth/weak-password') {
+        		$('#signupSection').append('<div class="errorMessage1">' + 'Password is too weak' + '</div>');
+          	} else {
+            	$('#signupSection').append('<div class="errorMessag1">' + errorMessage + '</div>');
+          	}
+          	// ...
+          	});
+
+          	database.ref().push({
+            	Email: email,
+            	FavTeam: favTeam
+          	});
+
+          	$('#emailInput').val("");
+          	$('#passwordInput').val("");
+          	$('#favTeamInput').val("");
+
+          	return false;
+        });
+        // <----------------------------------------->
+
+        // Sign in logic
+        $('#signIn').on('click', function() {
+
+        	if (firebase.auth().currentUser) {
+          	// [START signout]
+          	firebase.auth().signOut();
+          	// [END signout]
+         	} else {
+          	var email = $('#exampleInputEmail3').val().trim(); 
+          	var password = $('#exampleInputPassword3').val().trim();
+          	if (email.length < 4) {
+            	$('#loginSection').append('<div class="errorMessage2">' + 'Please enter an email address' + '</div>');
+            return false;
+          	}
+          	}
+        	if (password.length < 4) {
+         		$('#loginSection').append('<div class="errorMessage2">' + 'Password too short' + '</div>');
+            return false;
+          	}
+        	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          	// Handle Errors here.
+          	var errorCode = error.code;
+          	var errorMessage = error.message;
+          	if (errorCode === 'auth/wrong-password') {
+            	$('#loginSection').append('<div class="errorMessage2">' + 'Wrong password' + '</div>');
+          	} else {
+            	$('#loginSection').append('<div class="errorMessage2">' + errorMessage + '</div');
+          	}
+          	// ...
+          	});
+
+          	$('#exampleInputEmail3').val("");
+          	$('#exampleInputPassword3').val("");
+
+        	firebase.auth().onAuthStateChanged(function(user) {
+  				if (user) {
+    			// User is signed in.
+    			$(location).attr("href", "main.html");
+  				} else {
+    			// No user is signed in.
+  				}
+			});
+          
+          	return false;
+          	});  
+
+          	// <----------------------------------------->
+        </script>
+<!-- ======= -->
+            <!-- first row of gifs
+ -->    <div class="row" align="center" id="gifrow2">
+        <div class="col-lg-3" id="hockey">HOCKEY</div>
+        <div class="col-lg-3" id="rugby">RUGBY</div>
+        <div class="col-lg-3" id="volleyball">VOLLEYBALL</div>
+        <div class="col-lg-3" id="track">TRACK and FIELD</div>
+    </div>
+      
+ 
+>>>>>>> c5f11442f78f3c5244c647f7d3bf8f2a38ceda9b
 
 </body>
+<footer>
+   2016 TEAM-EXTREME All rights reserved.
+</footer>
+
 </html>
