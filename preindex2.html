@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Team Feed Search Page</title>
+    <!--     Bootstrap
+ -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    <!--  Stylesheet
+ -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/prestyle.css">
+    <!--  Google Font
+ -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href ="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400" rel="stylesheet">
+    <!-- Firebase
+ -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+</head>
+
+<body>
+<!-- first row of gifs
+ -->    <div class="row" align="center" id="gifrow">
+        <div class="col-lg-3" id="bball">BASKETBALL</div>
+        <div class="col-lg-3" id="soccer">SOCCER</div>
+        <div class="col-lg-3" id="baseball">BASEBALL</div>
+        <div class="col-lg-3" id="football" data-name="football">FOOTBALL</div>
+    </div>
+
+<!--     jumbotron
+ --> <div class="jumbotron" align="center">
+        <h2 class="display-3">Welcome to TEAM FEED</h2>
+        <p class="lead">Search for ALL THINGS your favorite team in a click!</p>
+        <hr class="m-y-md">
+ <!--search form
+ -->
+        <form method="get" id="search">
+                <input type="text" class="searchbox" value="Type here.." onblur="if(this.value == '') { this.value = 'Type here..'; }" onfocus="if(this.value == 'Type here..') { this.value = ''; }" name="s" id="searchTerm">
+                <button type="submit" id="submitbtn">Submit</button>
+         </form>                
+
+  </div>
+
+
+   <!-- second row of gifs
+ --><div class="row" align="center" id="gifrow2">
+        <div class="col-lg-3" id="hockey">HOCKEY</div>
+        <div class="col-lg-3" id="rugby">RUGBY</div>
+        <div class="col-lg-3" id="volleyball">VOLLEYBALL</div>
+        <div class="col-lg-3" id="track">TRACK and FIELD</div>
+    </div>
+
+<!--     Search Results
+ --> <div id="article"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+ 
+        // Search Form Code
+$(".searchbox").autocomplete({
+    source: function(request, response) {
+        $.ajax({
+            url: "http://en.wikipedia.org/w/api.php",
+            dataType: "jsonp",
+            data: {
+                'action': "opensearch",
+                'format': "json",
+                'search': request.term
+            },
+            success: function(data) {
+                response(data[1]);
+            }
+        });
+    }
+});
+
+$("#submitbtn").on("click", function() {
+  
+  var searchTerm = $("#searchTerm").val().trim();
+  
+  $.ajax({
+      type: "GET",
+      url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
+      contentType: "application/json; charset=utf-8",
+      async: false,
+      dataType: "json",
+      success: function (data, textStatus, jqXHR) {
+      
+    var markup = data.parse.text["*"];
+    var i = $('<div></div>').html(markup);
+    
+    // remove links as they will not work
+    i.find('a').each(function() { $(this).replaceWith($(this).html()); });
+    
+    // remove any references
+    i.find('sup').remove();
+    
+    // remove cite error
+    i.find('.mw-ext-cite-error').remove();
+    
+    $('#article').html($(i).find('p'));
+      
+    
+      },
+      error: function (errorMessage) {
+      }
+
+  });
+  return false;
+});
+
+
+          
+        </script>
+
+</body>
+<footer>
+   2016 TEAM-EXTREME All rights reserved.
+</footer>
+
+</html>
