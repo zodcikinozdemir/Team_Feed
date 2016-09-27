@@ -4,7 +4,7 @@
 }
 
 #gifrow2{
-	margin-top: -35px;
+	margin-top: -48px;
 }
 
 
@@ -21,7 +21,8 @@
 /*FIRST ROW OF GIFS*/
 
 #bball{
-background-image: url("../images/preindex/basketball.gif");
+background-image:
+ url("../images/preindex/basketball.gif");
 height:175px;
 color: #ffffff;
 font-size: 60px;
