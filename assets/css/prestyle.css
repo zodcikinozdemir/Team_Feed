@@ -1,11 +1,7 @@
 
-#gifrow {
-	font-family: oswald;
-}
 
-#gifrow2{
-	margin-top: -48px;
-}
+
+
 
 #article{
 	font-family: 'Open-Sans';
@@ -22,7 +18,9 @@
 
 
 /*FIRST ROW OF GIFS*/
-
+#gifrow {
+	font-family: oswald;
+}
 #bball{
 background-image:
  url("../images/preindex/basketball.gif");
@@ -69,6 +67,9 @@ padding-top: 60px;
 }
 
 /*2nd ROW OF GIFS*/
+#gifrow2{
+	margin-top: -48px;
+}
 #track{
 background-image: url("../images/preindex/track.gif");
 height:175px;
