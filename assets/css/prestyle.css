@@ -1,12 +1,9 @@
 
-#gifrow {
-	font-family: oswald;
-}
 
-#gifrow2{
-	margin-top: -35px;
-}
 
+#article{
+	font-family: 'Open-Sans';
+}
 
 .jumbotron {
 	background-color: #171d22;
@@ -19,9 +16,12 @@
 
 
 /*FIRST ROW OF GIFS*/
-
+#gifrow {
+	font-family: oswald;
+}
 #bball{
-background-image: url("../images/preindex/basketball.gif");
+background-image:
+ url("../images/preindex/basketball.gif");
 height:175px;
 color: #ffffff;
 font-size: 60px;
@@ -65,6 +65,9 @@ padding-top: 60px;
 }
 
 /*2nd ROW OF GIFS*/
+#gifrow2{
+	margin-top: -48px;
+}
 #track{
 background-image: url("../images/preindex/track.gif");
 height:175px;
@@ -106,20 +109,4 @@ padding-top: 60px;
 	text-align: center;
 	color: #ffffff;
 	font-family: 'Open Sans';
-}
-
-span {
-	color: black !important;
-}
-
-#remMe {
-	color: white !important;
-}
-
-#signupSection {
-	background-color: black !important;
-}
-
-#loginSection {
-	background-color: black !important;
 }
