@@ -1,128 +1,115 @@
 <!DOCTYPE html>
-<html lang="">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Team Feed Landing Page</title>
-    <!--     Bootstrap
- -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--  Stylesheet
- -->
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/prestyle.css">
-    <!--  Google Font
- -->
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <link href ="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400" rel="stylesheet">
-    <!-- Firebase
- -->
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <title>Team Feed</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/indexstylesheet.css"><!--stylesheet-->
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  
+  <!--google fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+   <link href ="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400" rel="stylesheet">
 </head>
 
+
+<!--NAV/ SEARCH BAR -->
+<nav class="navbar navbar-inverse">
+<p id="title">TEAM FEED</p>
+ <div class="container-fluid">
+  <div class="row">
+      <form class="navbar-form navbar-center" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Select another team"></div>
+           <button type="submit" class="btn btn-default" id="submitBtn">SUBMIT</button>
+            <a href="#" class="btn btn-danger" id="resetBtn" > RESET</a>
+   <div class="col-md-5">
+  </div>
+ </div>
+</nav>
+
+
 <body>
-<!-- first row of gifs
- -->    <div class="row" align="center" id="gifrow">
-        <div class="col-lg-3" id="bball">BASKETBALL</div>
-        <div class="col-lg-3" id="soccer">SOCCER</div>
-        <div class="col-lg-3" id="baseball">BASEBALL</div>
-        <div class="col-lg-3" id="football" data-name="football">FOOTBALL</div>
-    </div>
 
-<!--     jumbotron
- -->    <div class="jumbotron" align="center">
-        <h2 class="display-3">Welcome to TEAM FEED</h2>
-        <p class="lead">Search for ALL THINGS your favorite team in a click!</p>
-        <hr class="m-y-md">
+<br>
+<br>
+<!--BUTTON AREA-->
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-2col-md">
+     <a href="#" class="btn btn-danger btn-sm" id="footBallBtn" >FOOTBALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="baseBallBtn" >BASE BALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="basketBallBtn" >BASKET BALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="hockeyBtn">HOCKEY</a>
+     <a href="#" class="btn btn-danger btn-sm" id="otherSportBtn">OTHER</a>
+  </div>
+  <div class="col-md-1" ></div>
+</div>
+
+<!--samples teams for each sport-->
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-2col-md">
+     <a href="#" class="btn btn-danger btn-sm" id="jetsBtn">NY JETS</a>
+     <a href="#" class="btn btn-danger btn-sm" id="yankeesBtn" >NY YANKEES</a>
+     <a href="#" class="btn btn-danger btn-sm" id="bullsBtn" >CHICAGO BULLS</a>
+     <a href="#" class="btn btn-danger btn-sm" id="rangerBtn">NY RANGERS</a>
+  </div>
+  <div class="col-md-1" ></div>
+</div>
+
+
+
+<br><br>
+
+<div class="row"><!--dynamic buttons for added teams & teams associated with sports button-->
+  <div class="col-md-1"></div>
+  <div class="col-md" id="dynamicButtons"></div>
+  <div class="col-md-1"></div>
+</div>
+  
+<br>
+
+<!--news well-->
+<div class="row">
+ <div class="col-md-1"></div>
+ <div class="col-md-5">
+  <center><p>NEWS</center></p>
+      <div class="well well-lg" id="newsWell"> </div>
+</div>
+
+<!--events well-->
+<div class="col-md-5">
+ <center><p>EVENT</center></font></p>
+      <div class="well well-lg" id="eventsWells"> </div>
+      <div class="col-md-1"></div>
+</div>
+</div>
+
+<br>
+
+<!--gifs well-->
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+ <center><p>GIFS</center></p>
+      <div class="well well-lg" id="gifsWell"></div>
+</div>
+
+<!--social media links well-->
+  <div class="col-md-5">
+ <center><p>SOCIAL MEDIA</center></p>
+      <div class="well well-lg" id="socialMediaWell"></div>
         
-   <!--  <div class="container">
-        <div class="row">
-            <div class="container"> -->
-                <!-- Sign-Up Panel-->
-                <div class="col-lg-7">
-                    <div class="panel panel-default" id="signupSection">
-                        <!-- <div class="panel-heading">
-                            <h3 class="panel-title">New Member Sign-Up</h3>
-                        </div> -->
-                        <div class="panel-body">
-                            <!-- New Member Sign-up Form -->
-                            <form class="form-inline">
-                                <div class="form-group">
-                                     <input type="email" class="form-control" id="emailInput" placeholder="john.doe@example.com">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="passwordInput" placeholder="password">
-                                </div>
-                                
-                                <div class="form-group">
-                                   <input type="text" class="form-control" id="favTeamInput" placeholder="Favorite Team">
-                                </div>
-                                <br>
-                                <br>
-                                <button type="submit" class="btn btn-primary" id="signUp">Sign-Up</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!--             Member Login
- -->
-                <div class="col-lg-5">
-                    <div class="panel panel-default" id="loginSection">
-                        <!-- <div class="panel-heading">
-                            <h3 class="panel-title">Login</h3>
-                        </div> -->
-                        <div class="panel-body">
-                            <!-- Login Form -->
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-                                </div>
-                                <div class="checkbox">
-                                    <br>
-                                    <label>
-                                        <input type="checkbox"><span id="remMe">Remember me</span></input>
-                                    </label>
-                                    <button type="submit" class="btn btn-warning" id="signIn">Log In</button>
-
-                                </div>
-                                
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-<!-- <<<<<<< HEAD -->
-        </div>
-       </div>
-       	<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-        <!-- Bootstrap JavaScript-->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-        </script>
-        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-
-    <script src="assets/javascript/login.js"></script>
-<!-- ======= -->
-            <!-- first row of gifs
- -->    <div class="row" align="center" id="gifrow2">
-        <div class="col-lg-3" id="hockey">HOCKEY</div>
-        <div class="col-lg-3" id="rugby">RUGBY</div>
-        <div class="col-lg-3" id="volleyball">VOLLEYBALL</div>
-        <div class="col-lg-3" id="track">TRACK and FIELD</div>
-    </div>
+      <div class="col-md-1"></div>
+</div>
       
- 
->>>>>>> c5f11442f78f3c5244c647f7d3bf8f2a38ceda9b
+<!--JQUERY/ JS LINK-->
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="assets/javascript/team_feed.js"></script>
+
 
 </body>
-<footer>
-   2016 TEAM-EXTREME All rights reserved.
-</footer>
-
 </html>
