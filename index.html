@@ -118,12 +118,15 @@
           messagingSenderId: "250926730497"
         };
         firebase.initializeApp(config);
+
         var database = firebase.database();
+
         // Sign up logic
         $('#signUp').on('click', function() {
           var email = $('#emailInput').val().trim(); 
           var password = $('#passwordInput').val().trim();
           var favTeam = $('#favTeamInput').val().trim();
+
           if (email.length < 4) {
             $('#signupSection').append('<div>' + 'Please enter an email address' + '</div>');
             return false;
@@ -132,6 +135,7 @@
             $('#signupSection').append('<div>' + 'Please enter a password' + '</div>');
             return false;
           }
+
           firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
@@ -143,18 +147,23 @@
           }
           // ...
           });
+
           database.ref().push({
             Email: email,
             FavTeam: favTeam
           });
+
           $('#emailInput').val("");
           $('#passwordInput').val("");
           $('#favTeamInput').val("");
+
           return false;
         });
         // <----------------------------------------->
+
         // Sign in logic
         $('#signIn').on('click', function() {
+
           if (firebase.auth().currentUser) {
           // [START signout]
           firebase.auth().signOut();
@@ -182,10 +191,13 @@
           }
           // ...
           });
+
           $('#exampleInputEmail3').val("");
           $('#exampleInputPassword3').val("");
+
           return false;
           });  
+
           // <----------------------------------------->
         </script>
         <br>
