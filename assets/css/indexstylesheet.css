@@ -1,0 +1,10 @@
+
+body {
+  background-image: url("../images/lights.jpg");
+  font-size: 38px;
+  font-style:italic;
+  font-weight: 900;
+  line-height: 30px;
+  font-family: 'oswald', 'serif' ;
+  color: #ff3333;
+}

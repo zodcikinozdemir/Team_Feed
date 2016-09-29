@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Feed</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/indexstylesheet.css"><!--stylesheet-->
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  
+  <!--google fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+   <link href ="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400" rel="stylesheet">
+</head>
+
+
+<!--NAV/ SEARCH BAR -->
+<nav class="navbar navbar-inverse">
+<p id="title">TEAM FEED</p>
+ <div class="container-fluid">
+  <div class="row">
+      <form class="navbar-form navbar-center" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Select another team"></div>
+           <button type="submit" class="btn btn-default" id="submitBtn">SUBMIT</button>
+            <a href="#" class="btn btn-danger" id="resetBtn" > RESET</a>
+   <div class="col-md-5">
+  </div>
+ </div>
+</nav>
+
+
+<body>
+
+<br>
+<br>
+<!--BUTTON AREA-->
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-2col-md">
+     <a href="#" class="btn btn-danger btn-sm" id="footBallBtn" >FOOTBALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="baseBallBtn" >BASE BALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="basketBallBtn" >BASKET BALL</a>
+     <a href="#" class="btn btn-danger btn-sm" id="hockeyBtn">HOCKEY</a>
+     <a href="#" class="btn btn-danger btn-sm" id="otherSportBtn">OTHER</a>
+  </div>
+  <div class="col-md-1" ></div>
+</div>
+
+<!--samples teams for each sport-->
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-2col-md">
+     <a href="#" class="btn btn-danger btn-sm" id="jetsBtn">NY JETS</a>
+     <a href="#" class="btn btn-danger btn-sm" id="yankeesBtn" >NY YANKEES</a>
+     <a href="#" class="btn btn-danger btn-sm" id="bullsBtn" >CHICAGO BULLS</a>
+     <a href="#" class="btn btn-danger btn-sm" id="rangerBtn">NY RANGERS</a>
+  </div>
+  <div class="col-md-1" ></div>
+</div>
+
+
+
+<br><br>
+
+<div class="row"><!--dynamic buttons for added teams & teams associated with sports button-->
+  <div class="col-md-1"></div>
+  <div class="col-md" id="dynamicButtons"></div>
+  <div class="col-md-1"></div>
+</div>
+  
+<br>
+
+<!--news well-->
+<div class="row">
+ <div class="col-md-1"></div>
+ <div class="col-md-5">
+  <center><p>NEWS</center></p>
+      <div class="well well-lg" id="newsWell"> </div>
+</div>
+
+<!--events well-->
+<div class="col-md-5">
+ <center><p>EVENT</center></font></p>
+      <div class="well well-lg" id="eventsWells"> </div>
+      <div class="col-md-1"></div>
+</div>
+</div>
+
+<br>
+
+<!--gifs well-->
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+ <center><p>GIFS</center></p>
+      <div class="well well-lg" id="gifsWell"></div>
+</div>
+
+<!--social media links well-->
+  <div class="col-md-5">
+ <center><p>SOCIAL MEDIA</center></p>
+      <div class="well well-lg" id="socialMediaWell"></div>
+        
+      <div class="col-md-1"></div>
+</div>
+      
+<!--JQUERY/ JS LINK-->
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="assets/javascript/team_feed.js"></script>
+
+
+</body>
+</html>
