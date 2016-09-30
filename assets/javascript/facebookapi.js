@@ -56,7 +56,7 @@ $(document).on("click", "#dynamicButtons button", function() {
 $(".form-control").autocomplete({
     source: function(request, response) {
         $.ajax({
-            url: "https://crossorigin.me/http://en.wikipedia.org/w/api.php",
+            url: "http://en.wikipedia.org/w/api.php",
             dataType: "jsonp",
             data: {
                 'action': "opensearch",
@@ -81,11 +81,7 @@ $("#submitBtn").on("click", function() {
 	
 	$.ajax({
 	    type: "GET",
-<<<<<<< HEAD
 	    url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
-=======
-	    url: "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
->>>>>>> 6ab757bd99256b98e15b532bc1832bc39d6b6ead
 	    contentType: "application/json; charset=utf-8",
 	    async: false,
 	    dataType: "jsonp",
@@ -235,11 +231,6 @@ function ajaxFacebook(team) {
 	 	 	teamBtn.data("page_id", team_id);
 	 	 	teamBtn.appendTo("#dynamicButtons");
 	 	 	teamBtn.text(team);
-	 	 	// var deleteIcon = $("<span></span>");
-	 	 	// deleteIcon.addClass("glyphicon glyphicon-remove");
-	 	 	// deleteIcon.attr("aria-hidden", "true");
-	 	 	// deleteIcon.appendTo(teamBtn);
-	 	 	// deleteIcon.css("padding-left", "7px");
 
 			var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
 			var timeline = $("<iframe></iframe>");
