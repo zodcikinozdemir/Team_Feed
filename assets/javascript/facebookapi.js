@@ -45,13 +45,6 @@ $(document).on("click", "#dynamicButtons button", function() {
 	 	 	
 });
 
-// $(document).on("mouseover", ".glyphicon", function() {
-// 	$(this).css("color", "black");
-// });
-
-// $(document).on("click", ".glyphicon", function() {
-// 	$(this).remove()
-// });
 
 $(".form-control").autocomplete({
     source: function(request, response) {
@@ -193,7 +186,6 @@ function ajaxStattleship(urlArr) {
 		});
 	}
 
-	//console.log(teamArr);
 }
 
 
