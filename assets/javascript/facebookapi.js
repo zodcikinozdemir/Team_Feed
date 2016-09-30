@@ -12,33 +12,7 @@ $(document).on("click", "#dynamicButtons button", function() {
 	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
 	var timeline = $("<iframe></iframe>");
 	
-	// Page Plugin Configuration
-	var tabs = "tabs=timeline";
-	var width = "500";
-	var height = "500";
-	var cover = "hide_cover=true";
-	var small_header = "small_header=true";
-	var friends = "show_facepile=false";
-	var source = buildURL(plugin, page_id, tabs, width, height, cover, small_header, friends);
-	
-	// Timeline (Posts) 
-	timeline.attr("src", source);
-	timeline.attr("width", width);
-	timeline.attr("height", height);
-	timeline.attr("style", "border:none;overflow:hidden");
-	timeline.attr("scrolling", "no");
-	timeline.attr("frameborder", "0");
-	timeline.attr("allowTransparency", "true");
-	$("#newsWell").empty();
-	timeline.appendTo("#newsWell");
-
-	//Events (Upcoming) 
- 	var events = timeline.clone();
- 	tabs = "tabs=events";
- 	source = buildURL(plugin, page_id, tabs, width, height, cover, small_header, friends);
- 	events.attr("src", source);
- 	$("#eventsWells").empty();
- 	events.appendTo("#eventsWells");
+	embedPage(page_id);
 
  	//console.log($(this).attr("id"));
  	teamColor($(this).attr("id"));
@@ -46,6 +20,31 @@ $(document).on("click", "#dynamicButtons button", function() {
 	 	 	
 });
 
+$(document).on("mouseenter", ".glyphicon-remove", function() {
+	$(this).css("color", "black");
+	$(document).off("click", "#dynamicButtons button");
+});
+
+$(document).on("mouseleave", ".glyphicon-remove", function() {
+	$(this).css("color", "white");
+});
+
+$(document).on("click", ".glyphicon-remove", function() {
+	$(this).parent().remove();
+	$(document).on("click", "#dynamicButtons button", function() {
+	var page_id = $(this).data("page_id");
+
+	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
+	var timeline = $("<iframe></iframe>");
+	
+	embedPage(page_id);
+
+ 	//console.log($(this).attr("id"));
+ 	teamColor($(this).attr("id"));
+	displayGifs($(this).attr("id"));
+	 	 	
+});
+});
 
 $(".form-control").autocomplete({
     source: function(request, response) {
@@ -65,38 +64,40 @@ $(".form-control").autocomplete({
 });
 
 // DISPLAY GIFS
-    function displayGifs(team) {
-        // var team = $(".form-control").val().trim();
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + team + "&api_key=dc6zaTOxFJmzC&limit=4";
+function displayGifs(team) {
+    // var team = $(".form-control").val().trim();
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + team + "&api_key=dc6zaTOxFJmzC&limit=4";
 
-        // Creates AJAX call for the specific team 
-        $.ajax({
-            url: queryURL,
-            method: 'GET'
-        })
+    // Creates AJAX call for the specific team 
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    })
 
-        .done(function(response) {
-            console.log(response);
+    .done(function(response) {
+        console.log(response);
 
-            var results = response.data;
-            for (var i = 0; i < results.length; i++) {
-                var teamDiv = $('<div>');
-                // teamDiv.addClass('col-lg-6');
-    
-                var teamImage = $('<img>');
-                teamImage.attr('src', results[i].images.fixed_height.url);
-                teamImage.addClass('teamGif');
-                teamImage.attr('data-state', "animate");
-                teamImage.attr('data-still', results[i].images.fixed_height_still.url);
-                teamImage.attr('data-animate', results[i].images.fixed_height.url);
+        var results = response.data; 
 
-                $('#gifsWell').empty();
-                teamDiv.append(teamImage);
-                $('#gifsWell').prepend(teamDiv);
-            }
+        $('#gifsWell').empty();
+        for (var i = 0; i < results.length; i++) {
+            var teamDiv = $('<div>');
+            // teamDiv.addClass('col-lg-6');
 
-        });
-    }
+            var teamImage = $('<img>');
+            teamImage.attr('src', results[i].images.fixed_height.url);
+            teamImage.addClass('teamGif');
+            teamImage.attr('data-state', "animate");
+            teamImage.attr('data-still', results[i].images.fixed_height_still.url);
+            teamImage.attr('data-animate', results[i].images.fixed_height.url);
+
+           
+            teamDiv.append(teamImage);
+            $('#gifsWell').prepend(teamDiv);
+        }
+
+    });
+}
 
 
 
@@ -134,7 +135,7 @@ $("#submitBtn").on("click", function() {
 		// remove cite error
 		i.find('.mw-ext-cite-error').remove();
 		
-		$('#wikiWell').append($(i).find('p'));
+		$('#wikiWell').html($(i).find('p'));
 			
 		
 	    },
@@ -170,7 +171,7 @@ function stattleshipSearch() {
 
 	ajaxStattleship(urlArr);
 
-	console.log(teamArr);
+	//console.log(teamArr);
 
 }
 
@@ -210,7 +211,7 @@ function ajaxStattleship(urlArr) {
 					var color = team.color;
 					var team_id = team.slug;
 
-					console.log(team_id);
+					//console.log(team_id);
 
 					teamArr.push(teamObj(color, full_name, team_id));
 
@@ -226,9 +227,8 @@ function ajaxStattleship(urlArr) {
 
 }
 
-
 function ajaxFacebook(team) {
-	var team_id;
+	var page_id;
 
 	$.ajax({
 
@@ -242,14 +242,23 @@ function ajaxFacebook(team) {
 				if(data.data[i].category.toLowerCase() == "sports team") {
 				console.log(data.data[i].name + " : " + data.data[i].id);
 				if(team.toLowerCase().trim() == data.data[i].name.toLowerCase().trim()) {
-					team_id = data.data[i].id;
+					page_id = data.data[i].id;
 					break;
 				}
 				}
 			}
 
-			if(!team_id) {
+			if(!page_id) {
 				console.log("No team exists");
+				$("#eventsWells").empty();
+				$("#newsWell").empty();
+				var error = $("<div></div");
+				error.text("Sorry. Could not find Facebook page");
+				error.addClass("text-center");
+				error.css("border", "1px solid black");
+				error.css("font-size", "13px");
+				error.appendTo("#newsWell");
+				error.clone().appendTo("#eventsWells");
 				return;
 			}
 
@@ -258,40 +267,16 @@ function ajaxFacebook(team) {
 			var teamBtn = $("<button></button>");
 	 	 	teamBtn.addClass("btn btn-danger btn-sm");
 	 	 	teamBtn.attr("id", team);
-	 	 	teamBtn.data("page_id", team_id);
+	 	 	teamBtn.data("page_id", page_id);
 	 	 	teamBtn.appendTo("#dynamicButtons");
 	 	 	teamBtn.text(team);
+	 	 	var deleteIcon = $("<span></span>");
+	 	 	deleteIcon.addClass("glyphicon glyphicon-remove");
+	 	 	deleteIcon.attr("aria-hidden", "true");
+	 	 	deleteIcon.appendTo(teamBtn);
+	 	 	deleteIcon.css("padding-left", "7px");
 
-			var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
-			var timeline = $("<iframe></iframe>");
-			
-			// Page Plugin Configuration
-			var tabs = "tabs=timeline";
-			var width = "500";
-			var height = "500";
-			var cover = "hide_cover=true";
-			var small_header = "small_header=true";
-			var friends = "show_facepile=false";
-			var source = buildURL(plugin, team_id, tabs, width, height, cover, small_header, friends);
-			
-			// Timeline (Posts) 
-			timeline.attr("src", source);
-			timeline.attr("width", width);
-			timeline.attr("height", height);
-			timeline.attr("style", "border:none;overflow:hidden");
-			timeline.attr("scrolling", "no");
-			timeline.attr("frameborder", "0");
-			timeline.attr("allowTransparency", "true");
-			$("#newsWell").empty();
-			timeline.appendTo("#newsWell");
-
-			//Events (Upcoming) 
-	 	 	var events = timeline.clone();
-	 	 	tabs = "tabs=events";
-	 	 	source = buildURL(plugin, team_id, tabs, width, height, cover, small_header, friends);
-	 	 	events.attr("src", source);
-	 	 	$("#eventsWells").empty();
-	 	 	events.appendTo("#eventsWells");
+			embedPage(page_id);
 	 	 	
 		},
 		error: function(data){
@@ -299,6 +284,39 @@ function ajaxFacebook(team) {
 		}
 	});
 
+}
+
+function embedPage(page_id) {
+	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
+	var timeline = $("<iframe></iframe>");
+	
+	// Page Plugin Configuration
+	var tabs = "tabs=timeline";
+	var width = "500";
+	var height = "500";
+	var cover = "hide_cover=true";
+	var small_header = "small_header=true";
+	var friends = "show_facepile=false";
+	var source = buildURL(plugin, page_id, tabs, width, height, cover, small_header, friends);
+	
+	// Timeline (Posts) 
+	timeline.attr("src", source);
+	timeline.attr("width", width);
+	timeline.attr("height", height);
+	timeline.attr("style", "border:none;overflow:hidden");
+	timeline.attr("scrolling", "no");
+	timeline.attr("frameborder", "0");
+	timeline.attr("allowTransparency", "true");
+	$("#newsWell").empty();
+	timeline.appendTo("#newsWell");
+
+	//Events (Upcoming) 
+ 	var events = timeline.clone();
+ 	tabs = "tabs=events";
+ 	source = buildURL(plugin, page_id, tabs, width, height, cover, small_header, friends);
+ 	events.attr("src", source);
+ 	$("#eventsWells").empty();
+ 	events.appendTo("#eventsWells");
 }
 
 // Build url with settings for iframe src
