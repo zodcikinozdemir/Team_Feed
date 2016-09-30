@@ -32,6 +32,7 @@ $('#signUp').on('click', function() {
       Email: email,
       FavTeam: favTeam
     });
+    $('#signupSection').append('<div id="registered">Your Signed Up! Please Login to Enter</div>');
   }, function(error) {
       if (error.code) {
         var errorCode = error.code;

@@ -211,6 +211,11 @@ footer {
 	color: white !important;
 }
 
+#registered {
+	color: green !important;
+	font-weight: bold !important;
+}
+
 /*#signupSection {
 	background-color: black !important;
 }

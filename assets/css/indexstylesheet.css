@@ -23,6 +23,7 @@ font-weight: 900;
   color: #ff3333;
 }
 
+<<<<<<< HEAD
 #title {
 	padding: 25px;
 }
@@ -37,4 +38,9 @@ float: auto;
 
 .panel-heading{
 	background-color: #171d22;
+=======
+#socialMediaWell {
+	font-size: 13px;
+	color: black;
+>>>>>>> 50849556464f06e71bafa09286e9b7176bee48fc
 }
