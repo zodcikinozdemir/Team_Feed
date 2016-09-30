@@ -103,7 +103,7 @@ $("#submitBtn").on("click", function() {
 		// remove cite error
 		i.find('.mw-ext-cite-error').remove();
 		
-		$('#socialMediaWell').append($(i).find('p'));
+		$('#WikiWell').append($(i).find('p'));
 			
 		
 	    },
