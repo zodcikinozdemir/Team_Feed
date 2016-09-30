@@ -18,17 +18,23 @@
 
 <!--NAV/ SEARCH BAR -->
 <nav class="navbar navbar-inverse">
-<p id="title">TEAM FEED</p>
- <div class="container-fluid">
+<div class="col-lg-3">
+  <p id="title">TEAM FEED</p>
+</div>
+<div class ="col-lg-5"></div>
+
+<div class="col-lg-4">
+
   <div class="row autocomplete">
-      <form class="navbar-form navbar-center" role="search">
+      <form class="navbar-form navbar-center" role="search" align="center">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Select another team"></div>
            <button type="submit" class="btn btn-default" id="submitBtn">SUBMIT</button>
             <a href="#" class="btn btn-danger" id="resetBtn" > RESET</a>
-   <div class="col-md-5">
+
+   
   </div>
- </div>
+  <br>
 </nav>
 
 
@@ -36,15 +42,18 @@
 
 
 <div class="row"><!--dynamic buttons for added teams & teams associated with sports button-->
+<div class="container">
   <div class="col-md-1"></div>
   <div class="col-md" id="dynamicButtons"></div>
   <div class="col-md-1"></div>
 </div>
+</div>
   
 <br>
+<div class = "container-fluid">
 
 <!--news well-->
-<div class="panel panel-default col-sm-6">
+<div class="panel panel-default col-lg-6">
   <div class="panel-heading">
     <h3 class="panel-title" align="center">SOCIAL MEDIA</h3>
   </div>
@@ -76,13 +85,15 @@
   </div>
   <div class="panel-body" id= "wikiWell">
   </div>
-</div>      
+</div>    
+</div>  
 
 <!--JQUERY/ JS LINK-->
 <script src="https://code.jquery.com/jquery.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/javascript/facebookapi.js"></script>
+<script type="text/javascript" src="assets/javascript/giphy.js"></script>
 
 
 </body>
