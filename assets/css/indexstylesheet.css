@@ -1,15 +1,46 @@
 
+#title{
+	color: #ffffff;
+}
+
+ navbar-inverse{
+	background-color: #171d22;
+
+}
+
+
+.panel-title{
+	color:#ff3333;
+	font-size: 24px;
+}
+
 body {
   background-image: url("../images/lights.jpg");
   font-size: 38px;
-  font-style:italic;
-  font-weight: 900;
+font-weight: 900;
   line-height: 30px;
   font-family: 'oswald', 'serif' ;
   color: #ff3333;
 }
 
+<<<<<<< HEAD
+#title {
+	padding: 25px;
+}
+
+.navbar-form {
+float: auto;
+}
+
+.buttonRow{
+	background-color: #171d22;
+}
+
+.panel-heading{
+	background-color: #171d22;
+=======
 #socialMediaWell {
 	font-size: 13px;
 	color: black;
+>>>>>>> 50849556464f06e71bafa09286e9b7176bee48fc
 }
