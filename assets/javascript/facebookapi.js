@@ -56,7 +56,7 @@ $(document).on("click", "#dynamicButtons button", function() {
 $(".form-control").autocomplete({
     source: function(request, response) {
         $.ajax({
-            url: "http://en.wikipedia.org/w/api.php",
+            url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php",
             dataType: "jsonp",
             data: {
                 'action': "opensearch",
