@@ -35,7 +35,7 @@
                 teamImage.attr('data-still', results[i].images.fixed_height_still.url);
                 teamImage.attr('data-animate', results[i].images.fixed_height.url);
 
-    
+                $('#gifsWell').empty();
                 teamDiv.append(teamImage);
                 $('#gifsWell').prepend(teamDiv);
             }
@@ -92,7 +92,7 @@
     
     // ========================================================
     // This calls the renderButtons() function
-    $(document).on('click', 'submitBtn', displayGifs);
+    // $(document).on('click', '#submitBtn', displayGifs);
     $(document).on('click', '#dynamicButtons button', displayGifs);
     // renderButtons();
     $(document).on('click', '.teamGif', pauseGifs);
