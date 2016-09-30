@@ -1,0 +1,38 @@
+.ui-menu-item {
+        /*background: #a8a8a8;
+		background-repeat:no-repeat;
+		margin:0 auto;
+		padding:0;
+        color: #7f7f7f;*/
+		font-family:Arial, Helvetica, sans-serif;
+		font-size:13px;
+		/*line-height:18px;
+		width:100%;*/
+    }
+h1 { color:#F7F7F7; font-size:24px; font-weight:normal; }
+#search input {
+		background: none repeat scroll 0 0 #fff;
+		border: 0 none;
+		color: #7F7F7F;
+		float: left;
+		font: 12px 'Helvetica','Lucida Sans Unicode','Lucida Grande',sans-serif;
+		height: 20px;
+		margin: 0;
+		padding: 10px;
+		transition: background 0.3s ease-in-out 0s;
+		width: 300px;
+	}
+	
+	#search button {
+		background: no-repeat scroll center center #7eac10;
+		cursor: pointer;
+		height: 40px;
+		text-indent: -99999em;
+		transition: background 0.3s ease-in-out 0s;
+		width: 40px;
+		border: 2px solid #fff;
+	}
+	
+	#search button:hover {
+		background-color:#000;
+	}
