@@ -45,6 +45,14 @@ $(document).on("click", "#dynamicButtons button", function() {
 	 	 	
 });
 
+// $(document).on("mouseover", ".glyphicon", function() {
+// 	$(this).css("color", "black");
+// });
+
+// $(document).on("click", ".glyphicon", function() {
+// 	$(this).remove()
+// });
+
 $(".form-control").autocomplete({
     source: function(request, response) {
         $.ajax({
@@ -73,10 +81,10 @@ $("#submitBtn").on("click", function() {
 	
 	$.ajax({
 	    type: "GET",
-	    url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
+	    url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
 	    contentType: "application/json; charset=utf-8",
 	    async: false,
-	    dataType: "json",
+	    dataType: "jsonp",
 	    success: function (data, textStatus, jqXHR) {
 	    
 
