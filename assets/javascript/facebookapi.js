@@ -45,6 +45,22 @@ $(document).on("click", "#dynamicButtons button", function() {
 	 	 	
 });
 
+$(".form-control").autocomplete({
+    source: function(request, response) {
+        $.ajax({
+            url: "http://en.wikipedia.org/w/api.php",
+            dataType: "jsonp",
+            data: {
+                'action': "opensearch",
+                'format': "json",
+                'search': request.term
+            },
+            success: function(data) {
+                response(data[1]);
+            }
+        });
+    }
+});
 
 $("#submitBtn").on("click", function() {
 	var team = $(".form-control").val();
@@ -53,6 +69,40 @@ $("#submitBtn").on("click", function() {
 	ajaxFacebook(team);
 	teamColor(team);
 
+	var searchTerm = $(".form-control").val().trim();
+	
+	$.ajax({
+	    type: "GET",
+	    url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
+	    contentType: "application/json; charset=utf-8",
+	    async: false,
+	    dataType: "json",
+	    success: function (data, textStatus, jqXHR) {
+	    
+
+		var markup = data.parse.text["*"];
+
+		// $('#socialMediaWell').append(markup);
+
+		var i = $('<div></div>').html(markup);
+		
+		// remove links as they will not work
+		i.find('a').each(function() { $(this).replaceWith($(this).html()); });
+		
+		// remove any references
+		i.find('sup').remove();
+		
+		// remove cite error
+		i.find('.mw-ext-cite-error').remove();
+		
+		$('#socialMediaWell').append($(i).find('p'));
+			
+		
+	    },
+	    error: function (errorMessage) {
+	    }
+
+	});
 	return false;
 });
 
