@@ -42,6 +42,7 @@ $(document).on("click", "#dynamicButtons button", function() {
 
  	//console.log($(this).attr("id"));
  	teamColor($(this).attr("id"));
+	displayGifs($(this).attr("id"));
 	 	 	
 });
 
@@ -63,12 +64,49 @@ $(".form-control").autocomplete({
     }
 });
 
+// DISPLAY GIFS
+    function displayGifs(team) {
+        // var team = $(".form-control").val().trim();
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + team + "&api_key=dc6zaTOxFJmzC&limit=4";
+
+        // Creates AJAX call for the specific team 
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        })
+
+        .done(function(response) {
+            console.log(response);
+
+            var results = response.data;
+            for (var i = 0; i < results.length; i++) {
+                var teamDiv = $('<div>');
+                // teamDiv.addClass('col-lg-6');
+    
+                var teamImage = $('<img>');
+                teamImage.attr('src', results[i].images.fixed_height.url);
+                teamImage.addClass('teamGif');
+                teamImage.attr('data-state', "animate");
+                teamImage.attr('data-still', results[i].images.fixed_height_still.url);
+                teamImage.attr('data-animate', results[i].images.fixed_height.url);
+
+                $('#gifsWell').empty();
+                teamDiv.append(teamImage);
+                $('#gifsWell').prepend(teamDiv);
+            }
+
+        });
+    }
+
+
+
 $("#submitBtn").on("click", function() {
 	var team = $(".form-control").val();
 	var team_id;
 
 	ajaxFacebook(team);
 	teamColor(team);
+	displayGifs(team);
 
 	var searchTerm = $(".form-control").val().trim();
 	
@@ -134,7 +172,7 @@ function stattleshipSearch() {
 
 	console.log(teamArr);
 
-};
+}
 
 function teamColor(team) {
 	for(var i = 0; i < teamArr.length; i++) {
