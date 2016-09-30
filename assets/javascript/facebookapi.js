@@ -81,11 +81,7 @@ $("#submitBtn").on("click", function() {
 	
 	$.ajax({
 	    type: "GET",
-<<<<<<< HEAD
 	    url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
-=======
-	    url: "https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
->>>>>>> 6ab757bd99256b98e15b532bc1832bc39d6b6ead
 	    contentType: "application/json; charset=utf-8",
 	    async: false,
 	    dataType: "jsonp",
