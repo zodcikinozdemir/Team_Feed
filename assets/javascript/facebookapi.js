@@ -7,6 +7,61 @@ $(document).ready(function() {
 });
 
 $(document).on("click", "#dynamicButtons button", function() {
+	var team_name = $(this).attr("id");
+
+	var page_id = $(this).data("page_id");
+
+	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
+	var timeline = $("<iframe></iframe>");
+	
+	embedPage(page_id);
+
+ 	//console.log($(this).attr("id"));
+ 	teamColor(team_name);
+	displayGifs(team_name);
+
+	$.ajax({
+	    type: "GET",
+	    url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + team_name + "&callback=?",
+	    contentType: "application/json; charset=utf-8",
+	    dataType: "jsonp",
+	    success: function (data, textStatus, jqXHR) {
+	    
+
+		var markup = data.parse.text["*"];
+
+		// $('#socialMediaWell').append(markup);
+
+		var i = $('<div></div>').html(markup);
+		
+		// remove links as they will not work
+		i.find('a').each(function() { $(this).replaceWith($(this).html()); });
+		
+		// remove any references
+		i.find('sup').remove();
+		
+		// remove cite error
+		i.find('.mw-ext-cite-error').remove();
+		
+		$('#wikiWell').html($(i).find('p'));
+			
+		
+	    },
+	    error: function (errorMessage) {
+	    }
+
+	});
+	 	 	
+});
+
+$(document).on("mouseenter", ".glyphicon-remove", function() {
+	$(this).css("color", "black");
+	$(document).off("click", "#dynamicButtons button");
+});
+
+$(document).on("mouseleave", ".glyphicon-remove", function() {
+	$(this).css("color", "white");
+	$(document).on("click", "#dynamicButtons button", function() {
 	var page_id = $(this).data("page_id");
 
 	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
@@ -19,14 +74,6 @@ $(document).on("click", "#dynamicButtons button", function() {
 	displayGifs($(this).attr("id"));
 	 	 	
 });
-
-$(document).on("mouseenter", ".glyphicon-remove", function() {
-	$(this).css("color", "black");
-	$(document).off("click", "#dynamicButtons button");
-});
-
-$(document).on("mouseleave", ".glyphicon-remove", function() {
-	$(this).css("color", "white");
 });
 
 $(document).on("click", ".glyphicon-remove", function() {
@@ -102,7 +149,7 @@ function displayGifs(team) {
 
 
 $("#submitBtn").on("click", function() {
-	var team = $(".form-control").val();
+	var team = $(".form-control").val().trim();
 	var team_id;
 
 	ajaxFacebook(team);
@@ -115,7 +162,6 @@ $("#submitBtn").on("click", function() {
 	    type: "GET",
 	    url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page="+searchTerm+"&callback=?",
 	    contentType: "application/json; charset=utf-8",
-	    async: false,
 	    dataType: "jsonp",
 	    success: function (data, textStatus, jqXHR) {
 	    
@@ -143,6 +189,8 @@ $("#submitBtn").on("click", function() {
 	    }
 
 	});
+
+	$(".form-control").val("");
 	return false;
 });
 
@@ -197,7 +245,6 @@ function ajaxStattleship(urlArr) {
 		      "Accept": "application/vnd.stattleship.com; version=1",
 		      'Content-Type': 'application/json',
 		    },
-		    async: false,
 			// data: {'Authorization': 'Token token=b1ab3c93495c159d440885c2a6a92430',
 			// 		'Content-Type': 'application/json',
 			// 		'Accept': 'application/vnd.stattleship.com; version=1'},
@@ -270,6 +317,7 @@ function ajaxFacebook(team) {
 	 	 	teamBtn.data("page_id", page_id);
 	 	 	teamBtn.appendTo("#dynamicButtons");
 	 	 	teamBtn.text(team);
+	 	 	teamBtn.css("padding", "5 5");
 	 	 	var deleteIcon = $("<span></span>");
 	 	 	deleteIcon.addClass("glyphicon glyphicon-remove");
 	 	 	deleteIcon.attr("aria-hidden", "true");
