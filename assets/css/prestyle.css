@@ -1,10 +1,7 @@
-
-
-
-
 #article{
 	font-family: 'Open-Sans';
 }
+
 
 .jumbotron {
 	background-color: #171d22;
@@ -118,13 +115,13 @@ padding-top: 60px;
 	font-family: oswald;
 }
 
-#welcome {
+/*#welcome {
 	background-color: #171d22;
 	color: #ffffff;
 	font-family: 'Open Sans';
  	font-style: normal;
   	font-weight: 300;
-}
+}*/
 
 /*FIRST ROW OF GIFS*/
 
@@ -214,10 +211,10 @@ footer {
 	color: white !important;
 }
 
-#signupSection {
+/*#signupSection {
 	background-color: black !important;
 }
 
 #loginSection {
 	background-color: black !important;
-}
+}*/
