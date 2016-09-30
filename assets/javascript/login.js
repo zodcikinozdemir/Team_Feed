@@ -40,7 +40,7 @@ $('#signUp').on('click', function() {
         if (errorCode == 'auth/weak-password') {
           $('#signupSection').append('<div class="errorMessage1">Password should be at least 6 characters</div>');
         } else {
-          $('#signupSection').append('<div class="errorMessag1">The email address is already in use by another account</div>');
+          $('#signupSection').append('<div class="errorMessage1">The email address is already in use by another account</div>');
           }  
       } 
       });
@@ -67,7 +67,7 @@ $('#signIn').on('click', function() {
     $('#loginSection').append('<div class="errorMessage2">' + 'Password too short' + '</div>');
     return false;
   }
-        	
+          
   firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
     var user = firebase.auth().currentUser;
     $(location).attr("href", "main.html");
@@ -87,5 +87,4 @@ $('#signIn').on('click', function() {
           
   return false;
 });  
-
 // <----------------------------------------->
