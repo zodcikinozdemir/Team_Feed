@@ -1,3 +1,37 @@
+// Initialize Firebase
+var config = {
+	apiKey: "AIzaSyCB1_l9Z63nc9iMewL2UOrhTzzAR2ResEE",
+	authDomain: "team-feed-2.firebaseapp.com",
+	databaseURL: "https://team-feed-2.firebaseio.com",
+	storageBucket: "team-feed-2.appspot.com",
+	messagingSenderId: "250926730497"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+	// User is signed in.
+	console.log(user.email);
+	$('#rowAC').append('<div id=currUser>'+ 'Current User: ' + user.email + '</div>');
+	} else {
+	// No user is signed in.
+	$('#rowAC').append('<div id=currUser>'+ 'Current User: ' + '</div>');
+  	}
+});
+
+$('#logoutBtn').on('click', function() {
+	firebase.auth().signOut().then(function() {
+		// Sign-out successful.
+		$(location).attr("href", "index.html");
+	}, function(error) {
+		console.log(error);
+		// An error happened.
+	});
+	return false
+});
+
 // Facebook App Token
 var token = "627047640810455|45zQTmaJMlTO45dEj2hOqNUtAug";
 

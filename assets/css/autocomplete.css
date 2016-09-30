@@ -36,3 +36,10 @@ h1 { color:#F7F7F7; font-size:24px; font-weight:normal; }
 	#search button:hover {
 		background-color:#000;
 	}
+
+#currUser {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color: white;
+	margin-left: 100px;
+}
