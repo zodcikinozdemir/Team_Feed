@@ -56,7 +56,7 @@ $(document).on("click", "#dynamicButtons button", function() {
 $(".form-control").autocomplete({
     source: function(request, response) {
         $.ajax({
-            url: "http://en.wikipedia.org/w/api.php",
+            url: "https://crossorigin.me/http://en.wikipedia.org/w/api.php",
             dataType: "jsonp",
             data: {
                 'action': "opensearch",
@@ -103,7 +103,7 @@ $("#submitBtn").on("click", function() {
 		// remove cite error
 		i.find('.mw-ext-cite-error').remove();
 		
-		$('#socialMediaWell').append($(i).find('p'));
+		$('#wikiWell').append($(i).find('p'));
 			
 		
 	    },
@@ -231,6 +231,11 @@ function ajaxFacebook(team) {
 	 	 	teamBtn.data("page_id", team_id);
 	 	 	teamBtn.appendTo("#dynamicButtons");
 	 	 	teamBtn.text(team);
+	 	 	// var deleteIcon = $("<span></span>");
+	 	 	// deleteIcon.addClass("glyphicon glyphicon-remove");
+	 	 	// deleteIcon.attr("aria-hidden", "true");
+	 	 	// deleteIcon.appendTo(teamBtn);
+	 	 	// deleteIcon.css("padding-left", "7px");
 
 			var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
 			var timeline = $("<iframe></iframe>");
