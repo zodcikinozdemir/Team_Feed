@@ -28,11 +28,10 @@ $('#signUp').on('click', function() {
 
   firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
     var user = firebase.auth().currentUser;
-    database.ref().push({
+    database.ref(user.uid).set({
       Email: email,
       FavTeam: favTeam
     });
-    database.ref(user.uid).set
     $(location).attr("href", "main.html");
   }, function(error) {
       if (error.code) {
