@@ -10,11 +10,50 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+var flag = false;
 firebase.auth().onAuthStateChanged(function(user) {
 	console.log(user.uid);
 	if (user) {
+
 	database.ref(user.uid).once("value").then(function(snapshot) {
-		console.log(snapshot.val().FavTeam);
+		if(flag == false) {
+			console.log(snapshot.val().FavTeam);
+			ajaxFacebook(snapshot.val().FavTeam);
+			teamColor(snapshot.val().FavTeam);
+			displayGifs(snapshot.val().FavTeam);
+			$.ajax({
+			    type: "GET",
+			    url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + snapshot.val().FavTeam + "&callback=?",
+			    contentType: "application/json; charset=utf-8",
+			    dataType: "jsonp",
+			    success: function (data, textStatus, jqXHR) {
+			    
+
+				var markup = data.parse.text["*"];
+
+				// $('#socialMediaWell').append(markup);
+
+				var i = $('<div></div>').html(markup);
+				
+				// remove links as they will not work
+				i.find('a').each(function() { $(this).replaceWith($(this).html()); });
+				
+				// remove any references
+				i.find('sup').remove();
+				
+				// remove cite error
+				i.find('.mw-ext-cite-error').remove();
+				
+				$('#wikiWell').html($(i).find('p'));
+					
+				
+			    },
+			    error: function (errorMessage) {
+			    }
+
+			});
+			flag = true;
+		}
 	});
 	console.log(user);
 	console.log(user.email);
@@ -26,7 +65,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 });
 
-console.log(firebase.auth().currentUser);
 $('#logoutBtn').on('click', function() {
 	firebase.auth().signOut().then(function() {
 		// Sign-out successful.
@@ -53,9 +91,6 @@ $(document).on("click", "#dynamicButtons button", function() {
 	var team_name = $(this).attr("id");
 
 	var page_id = $(this).data("page_id");
-
-	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
-	var timeline = $("<iframe></iframe>");
 	
 	embedPage(page_id);
 
@@ -105,35 +140,94 @@ $(document).on("mouseenter", ".glyphicon-remove", function() {
 $(document).on("mouseleave", ".glyphicon-remove", function() {
 	$(this).css("color", "white");
 	$(document).on("click", "#dynamicButtons button", function() {
+	var team_name = $(this).attr("id");
 	var page_id = $(this).data("page_id");
-
-	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
-	var timeline = $("<iframe></iframe>");
 	
 	embedPage(page_id);
 
  	//console.log($(this).attr("id"));
  	teamColor($(this).attr("id"));
 	displayGifs($(this).attr("id"));
+
+	$.ajax({
+	    type: "GET",
+	    url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + team_name + "&callback=?",
+	    contentType: "application/json; charset=utf-8",
+	    dataType: "jsonp",
+	    success: function (data, textStatus, jqXHR) {
+	    
+
+		var markup = data.parse.text["*"];
+
+		// $('#socialMediaWell').append(markup);
+
+		var i = $('<div></div>').html(markup);
+		
+		// remove links as they will not work
+		i.find('a').each(function() { $(this).replaceWith($(this).html()); });
+		
+		// remove any references
+		i.find('sup').remove();
+		
+		// remove cite error
+		i.find('.mw-ext-cite-error').remove();
+		
+		$('#wikiWell').html($(i).find('p'));
+			
+		
+	    },
+	    error: function (errorMessage) {
+	    }
+
+	});
 	 	 	
 });
 });
 
 $(document).on("click", ".glyphicon-remove", function() {
 	$(this).parent().remove();
-	$(document).on("click", "#dynamicButtons button", function() {
-	var page_id = $(this).data("page_id");
-
-	var plugin = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/";
-	var timeline = $("<iframe></iframe>");
+	// $(document).on("click", "#dynamicButtons button", function() {
+	// var team_name = $(this).attr("id");
+	// var page_id = $(this).data("page_id");
 	
-	embedPage(page_id);
+	// embedPage(page_id);
 
- 	//console.log($(this).attr("id"));
- 	teamColor($(this).attr("id"));
-	displayGifs($(this).attr("id"));
+ // 	//console.log($(this).attr("id"));
+ // 	teamColor($(this).attr("id"));
+	// displayGifs($(this).attr("id"));
 	 	 	
-});
+	// $.ajax({
+	//     type: "GET",
+	//     url: "https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + team_name + "&callback=?",
+	//     contentType: "application/json; charset=utf-8",
+	//     dataType: "jsonp",
+	//     success: function (data, textStatus, jqXHR) {
+	    
+
+	// 	var markup = data.parse.text["*"];
+
+	// 	// $('#socialMediaWell').append(markup);
+
+	// 	var i = $('<div></div>').html(markup);
+		
+	// 	// remove links as they will not work
+	// 	i.find('a').each(function() { $(this).replaceWith($(this).html()); });
+		
+	// 	// remove any references
+	// 	i.find('sup').remove();
+		
+	// 	// remove cite error
+	// 	i.find('.mw-ext-cite-error').remove();
+		
+	// 	$('#wikiWell').html($(i).find('p'));
+			
+		
+	//     },
+	//     error: function (errorMessage) {
+	//     }
+
+	// });
+//});
 });
 
 $(".form-control").autocomplete({
@@ -360,7 +454,7 @@ function ajaxFacebook(team) {
 	 	 	teamBtn.data("page_id", page_id);
 	 	 	teamBtn.appendTo("#dynamicButtons");
 	 	 	teamBtn.text(team);
-	 	 	teamBtn.css("padding", "5 5");
+	 	 	teamBtn.css("margin", "5px 5px");
 	 	 	var deleteIcon = $("<span></span>");
 	 	 	deleteIcon.addClass("glyphicon glyphicon-remove");
 	 	 	deleteIcon.attr("aria-hidden", "true");
