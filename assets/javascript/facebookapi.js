@@ -11,8 +11,11 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 firebase.auth().onAuthStateChanged(function(user) {
+	console.log(user.uid);
 	if (user) {
-	// User is signed in.
+	database.ref(user.uid).once("value").then(function(snapshot) {
+		console.log(snapshot.val().FavTeam);
+	});
 	console.log(user);
 	console.log(user.email);
 	$('#rowAC').append('<div id=currUser>'+ 'Current User: ' + user.email + '</div>');
@@ -20,8 +23,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 	// No user is signed in.
 	$('#rowAC').append('<div id=currUser>'+ 'Current User: ' + '</div>');
   	}
+
 });
 
+console.log(firebase.auth().currentUser);
 $('#logoutBtn').on('click', function() {
 	firebase.auth().signOut().then(function() {
 		// Sign-out successful.
