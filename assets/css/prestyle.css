@@ -5,7 +5,6 @@
 
 .jumbotron {
 	background-color: #171d22;
-	height: 300px;
 	color: #ffffff;
 	font-family: 'Open Sans';
   font-style: normal;
@@ -216,10 +215,8 @@ footer {
 	font-weight: bold !important;
 }
 
-/*#signupSection {
-	background-color: black !important;
+#signupSection {
 }
 
 #loginSection {
-	background-color: black !important;
-}*/
+}
