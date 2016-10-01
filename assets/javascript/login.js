@@ -17,11 +17,13 @@ $('#signUp').on('click', function() {
   var favTeam = $('#favTeamInput').val().trim();
 
   if (email.length < 4) {
+    $('.errorMessage1').empty();
     $('#signupSection').append('<div class="errorMessage1">' + 'Please enter an email address' + '</div>');
     return false;
   }
   
   if (password.length < 4) {
+    $('.errorMessage1').empty();
     $('#signupSection').append('<div class="errorMessage1">' + 'Please enter a password' + '</div>');
     return false;
   }
@@ -37,7 +39,7 @@ $('#signUp').on('click', function() {
       if (error.code) {
         var errorCode = error.code;
         var errorMessage = error.message;
-
+        $('.errorMessage1').empty();
         if (errorCode == 'auth/weak-password') {
           $('#signupSection').append('<div class="errorMessage1">Password should be at least 6 characters</div>');
         } else {
@@ -60,11 +62,13 @@ $('#signIn').on('click', function() {
   var password = $('#exampleInputPassword3').val().trim();
   
   if (email.length < 4) {
+    $('.errorMessage2').empty();
     $('#loginSection').append('<div class="errorMessage2">' + 'Please enter an email address' + '</div>');
     return false;
   }
 
   if (password.length < 4) {
+    $('.errorMessage2').empty();
     $('#loginSection').append('<div class="errorMessage2">' + 'Password too short' + '</div>');
     return false;
   }
@@ -76,7 +80,7 @@ $('#signIn').on('click', function() {
   }, function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-      
+      $('.errorMessage2').empty();
       if (errorCode === 'auth/wrong-password') {
         $('#loginSection').append('<div class="errorMessage2">' + 'Wrong password' + '</div>');
       } else {
