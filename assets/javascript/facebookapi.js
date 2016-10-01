@@ -57,10 +57,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 	});
 	console.log(user);
 	console.log(user.email);
-	$('#rowAC').append('<div id=currUser>'+ 'Current User: ' + user.email + '</div>');
+	$('#rowAC').append('<div class=text-center id=currUser>'+ 'Current User: ' + user.email + '</div>');
 	} else {
 	// No user is signed in.
-	$('#rowAC').append('<div id=currUser>'+ 'Current User: ' + '</div>');
+	$('#rowAC').append('<div class=text-center id=currUser>'+ 'Current User: ' + '</div>');
   	}
 
 });
