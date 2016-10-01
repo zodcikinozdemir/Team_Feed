@@ -13,6 +13,7 @@ var database = firebase.database();
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 	// User is signed in.
+	console.log(user);
 	console.log(user.email);
 	$('#rowAC').append('<div id=currUser>'+ 'Current User: ' + user.email + '</div>');
 	} else {
@@ -38,6 +39,9 @@ var token = "627047640810455|45zQTmaJMlTO45dEj2hOqNUtAug";
 var teamArr = [];
 $(document).ready(function() {
 	stattleshipSearch();
+	$("#eventsWells").addClass("text-center");
+	$("#newsWell").addClass("text-center");
+	$("#gifsWell").addClass("text-center");
 });
 
 $(document).on("click", "#dynamicButtons button", function() {
